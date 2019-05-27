@@ -1,6 +1,10 @@
 # react_workshop
 React workshop by GloAcademy
 
+```
+json-server --watch posts.json
+```
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

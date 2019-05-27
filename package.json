@@ -5,6 +5,7 @@
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1"
   },
   "scripts": {
@@ -40,5 +41,5 @@
   "bugs": {
     "url": "https://github.com/yuramozol/react_workshop/issues"
   },
-  "homepage": "https://github.com/yuramozol/react_workshop#readme"
+  "homepage": "/"
 }

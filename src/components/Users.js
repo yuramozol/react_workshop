@@ -1,8 +1,10 @@
 import React from 'react';
 import User from './User';
+
 // we can use just a function when we need 
 // a block contains another components
 export default function Users() {
+
     return(
         <div className="right">
             <User 

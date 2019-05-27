@@ -1,11 +1,75 @@
 import React, {Component} from 'react';
-import Post from './Post';
+import User from './User';
+import InstaService from '../services/instaservice';
+import ErrorMessage from './ErrorMessage';
 
 export default class Posts extends Component {
+
+    InstaService = new InstaService();
+
+    state = {
+        posts: [],
+        error: false
+    }
+
+    componentDidMount() {
+        this.updatePosts();
+    }
+
+    updatePosts() {
+        this.InstaService.getAllPosts()
+        .then(this.onPostsLoaded)
+        .catch(this.onError)
+    }
+
+    onPostsLoaded = (posts) => {
+        this.setState({
+            posts, // can do this when posts: posts
+            error: false
+        })
+    }
+
+    onError = (err) => {
+        this.setState({
+            error: true
+        })
+    }
+
+    renderItems(arr) {
+        return arr.map(item => {
+            const {name, altname, photo, src, alt, descr, id} = item;
+            return (
+                <div key={id} className="post">
+                    <User
+                        src={photo} 
+                        alt={altname}
+                        name={name}
+                        min
+                    />
+                    <img src={src} alt={alt}></img>
+                    <div className="post__name">
+                        {name}
+                    </div>
+                    <div className="post__descr">
+                        {descr}
+                    </div>
+                </div>                
+            );
+        });
+    }
+
     render() {
+        const {error, posts} = this.state;
+
+        if (error) {
+            return <ErrorMessage/>
+        }
+
+        const items = this.renderItems(posts);
+
         return (
             <div className="left">
-                <Post alt="nature" src="https://images.takeshape.io/86ce9525-f5f2-4e97-81ba-54e8ce933da7/dev/144069dc-7390-4022-aa0f-abba022d3a2f/spec.jpg?auto=compress%2Cformat" />
+                {items}
             </div>
         )
     }
