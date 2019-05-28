@@ -6,6 +6,10 @@ json-server --watch posts.json
 ```
 https://loading.io/
 
+react helmet
+nextjs
+jest
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
