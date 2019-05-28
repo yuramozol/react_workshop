@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import User from './User';
 import InstaService from '../services/instaservice';
 import ErrorMessage from './ErrorMessage';
+import Spinner from './Spinner';
 
 export default class Posts extends Component {
 
@@ -9,7 +10,8 @@ export default class Posts extends Component {
 
     state = {
         posts: [],
-        error: false
+        error: false,
+        loading: true
     }
 
     componentDidMount() {
@@ -25,7 +27,8 @@ export default class Posts extends Component {
     onPostsLoaded = (posts) => {
         this.setState({
             posts, // can do this when posts: posts
-            error: false
+            error: false,
+            loading: false
         })
     }
 
@@ -44,6 +47,7 @@ export default class Posts extends Component {
                         src={photo} 
                         alt={altname}
                         name={name}
+                        id={id}
                         min
                     />
                     <img src={src} alt={alt}></img>
@@ -59,10 +63,14 @@ export default class Posts extends Component {
     }
 
     render() {
-        const {error, posts} = this.state;
+        const {error, posts, loading} = this.state;
 
         if (error) {
             return <ErrorMessage/>
+        }
+
+        if (loading) {
+            return <Spinner/>
         }
 
         const items = this.renderItems(posts);

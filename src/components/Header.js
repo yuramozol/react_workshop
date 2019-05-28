@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import logo from '../logo.svg';
+import logo from '../resources/img/logo.svg';
 import {Link} from 'react-router-dom';
 export default class Header extends Component {
     render() {
